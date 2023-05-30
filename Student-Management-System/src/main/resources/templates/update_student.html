@@ -12,8 +12,8 @@
   
 </head>
 <body>
-	
-	<nav class="navbar navbar-inverse">
+
+<nav class="navbar navbar-inverse">
   		<div class="container-fluid">
     		<div class="navbar-header">
       			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -26,7 +26,7 @@
     	<div class="collapse navbar-collapse" id="myNavbar">
       		<ul class="nav navbar-nav">
        			 <!-- <li class="active"><a href="#">Home</a></li> -->
-       			 <!-- <li><a th:href="@{/students}">Student Management</a></li> -->
+       			 <li><a th:href="@{/students}">Student List</a></li>
         		<!-- <li><a href="#">Page 2</a></li>
         		<li><a href="#">Page 3</a></li> -->
      		 </ul>
@@ -34,40 +34,54 @@
  	</div>
 </nav>
 
-	
 	<div class="container">
 		<div class="row">
-			<h1>List of Students</h1>
-		</div>
-		<div class="row">
-			<div class=column>
-				<a th:href = "@{/students/add}" class="btn btn-primary btn-sm 
-					btn-mb-3">Add Student</a>
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Update Student</h1>
+				<div class="card-body">
+					<form th:action="@{/students/{id} (id=${student.id})}" th:object="${student}" method="post">
+						<div class="form-group">
+							<label> Student First Name </label>
+							<input
+							type="text"
+							name="firstname"
+							th:feild="firstname"
+							class="form-control"
+							th:placeholder="${student.firstname}"
+							>
+						</div>
+						
+						<div class="form-group">
+							<label> Student Last Name </label>
+							<input
+							type="text"
+							name="lastname"
+							th:feild="lastname"
+							class="form-control"
+							th:placeholder="${student.lastname}"
+							>
+						</div>
+						
+						<div class="form-group">
+							<label> Student Email </label>
+							<input
+							type="text"
+							name="email"
+							th:feild="email"
+							class="form-control"
+							th:placeholder="${student.email}"
+							>
+						</div>
+						
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-		<table class="table table-striped table-bordered">
-			<thead class="table-dark">
-				<tr>
-					<th>Student First Name</th>
-					<th>Student Last Name</th>
-					<th>Student Email</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each = "student : ${students}">
-					<td th:text = "${student.firstname}"></td>
-					<td th:text = "${student.lastname}"></td>
-					<td th:text = "${student.email}"></td>
-					<td>
-						<a th:href = @{/students/update/{id}(id=${student.id})}
-						class = "btn btn-warning">Update</a>
-						<a th:href = @{/students/{id}(id=${student.id})}
-						class = "btn btn-danger">Delete</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
 </body>
 </html>
